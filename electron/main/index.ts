@@ -1,6 +1,7 @@
 import { app, BrowserWindow, shell, ipcMain } from 'electron'
 import { release } from 'node:os'
 import { join } from 'node:path'
+import { longTimeBlocking } from '../db/index'
 
 // The built directory structure
 //
@@ -50,7 +51,7 @@ async function createWindow() {
       // Consider using contextBridge.exposeInMainWorld
       // Read more on https://www.electronjs.org/docs/latest/tutorial/context-isolation
       nodeIntegration: true,
-      contextIsolation: false,
+      contextIsolation: true,
     },
   })
 
@@ -115,3 +116,6 @@ ipcMain.handle('open-win', (_, arg) => {
     childWindow.loadFile(indexHtml, { hash: arg })
   }
 })
+
+
+ipcMain.handle("test:longTimeBlocking", longTimeBlocking);
