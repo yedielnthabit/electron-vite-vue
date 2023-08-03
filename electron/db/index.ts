@@ -1,5 +1,1 @@
-export const longTimeBlocking = async () => {
-
-
-
-}
+export const longTimeBlocking = async () => {};
